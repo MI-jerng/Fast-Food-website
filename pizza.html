@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Little Chicken</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="image/logo1.png"/>
+</head>
+<body>
+  <header class="bg-black w-full fixed top-0 left-0 z-50">
+    <div class="max-w-full mx-auto flex items-center justify-between px-4 py-2">
+      <div class="flex items-center space-x-4">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+      </div>
+      <!-- Hamburger and search icon for mobile -->
+      <div class="flex md:hidden items-center space-x-4">
+        <button aria-label="Search" class="text-white text-2xl hover:text-orange-500" id="search-btn-mobile">
+          <i class="fas fa-search"></i>
+        </button>
+        <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-white text-base">
+        <a class="hover:text-orange-500" href="index.html">Home</a>
+        <a class="hover:text-orange-500" href="about.html">About us</a>
+        <a class="hover:text-orange-500" href="index.html#menu-category">Menu</a>
+      </nav>
+      <div class="hidden md:flex space-x-6 text-white text-xl relative" id="header-search-container">
+        <div id="header-search-bar"
+             class="absolute top-0 h-full flex items-center z-50 w-0 overflow-hidden bg-black rounded transition-all duration-300"
+             style="box-shadow: 0 2px 8px rgba(0,0,0,0.15); right: 8rem;">
+          <input id="header-search-input" type="text" placeholder="Search menu items..." class="opacity-0 w-0 border-none px-0 py-2 text-white bg-black focus:outline-none placeholder-gray-400 transition-all duration-300" />
+        </div>
+        <button aria-label="Search" class="hover:text-orange-500" id="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+        <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="md:hidden hidden bg-black text-white px-4 py-4 space-y-4">
+      <a class="block hover:text-orange-500" href="index.html">Home</a>
+      <a class="block hover:text-orange-500" href="about.html">About us</a>
+      <a class="block hover:text-orange-500" href="index.html#menu-category">Menu</a>
+      <div class="flex space-x-6 text-xl mt-2">
+        <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </nav>
+    <!-- Mobile search dropdown (hidden by default) -->
+    <div id="mobile-search-dropdown" class="md:hidden fixed left-0 right-0 top-[64px] z-40 bg-black px-4 py-3 hidden">
+      <input id="mobile-search-input" type="text" placeholder="Search menu items..." class="w-full rounded px-3 py-2 bg-gray-900 text-white placeholder-gray-400 focus:outline-none text-base" />
+      <ul id="mobile-search-results" class="mt-2 bg-black rounded shadow-lg border border-gray-700 max-h-64 overflow-y-auto divide-y divide-gray-800 text-white hidden"></ul>
+    </div>
+  </header>
+  <main class="mt-24">
+    <section id="pizza-section" class="w-full bg-white py-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-7xl font-bold text-orange-400 mb-8 flex items-center gap-4">
+          <span style="font-family: 'Anta', sans-serif;">PIZZA</span>
+        </h2>
+        <div class="flex flex-wrap gap-8 justify-center mb-8">
+          <a class="text-lg md:text-xl font-semibold tracking-widest text-gray-700 px-4 py-2 hover:text-orange-500 focus:outline-none" href="#Classic-pizza-section">CLASSIC PIZZA</a>
+          <a class="text-lg md:text-xl font-semibold tracking-widest text-gray-700 px-4 py-2 hover:text-orange-500 focus:outline-none" href="#Deluxe-pizza-section">DELUXE PIZZA</a>
+          <a class="text-lg md:text-xl font-semibold tracking-widest text-gray-700 px-4 py-2 hover:text-orange-500 focus:outline-none" href="#Seafood-deluxe-section">SEAFOOD DELUXE</a>
+        </div>
+        <!-- Pizza Crust Price Section -->
+        <div class="rounded-2xl bg-orange-400 px-8 py-8 mb-12 flex flex-wrap gap-8 items-start justify-center">
+          <div class="w-full text-white text-2xl md:text-3xl font-bold mb-6" style="font-family: 'Anta', sans-serif;">
+            CHOOSE PIZZA CRUST
+          </div>
+          <div class="flex flex-wrap gap-12 w-full justify-center">
+            <div class="flex flex-col items-center min-w-[180px]">
+              <img src="image/pizza/pan.png" alt="Pan" class="w-24 h-24 rounded-full object-cover mb-2 "/>
+              <span class="text-xl font-bold text-gray-200 mt-2 mb-1">PAN</span>
+              <div class="text-gray-200 text-left text-base font-semibold">
+                <div>S <span class="ml-2 font-normal">$5.10</span></div>
+                <div>M <span class="ml-2 font-normal">$9.30</span></div>
+                <div>L <span class="ml-2 font-normal">$14.90</span></div>
+              </div>
+            </div>
+            <div class="flex flex-col items-center min-w-[180px]">
+              <img src="image/pizza/crispy thin.png" alt="Crispy Thin" class="w-24 h-24 rounded-full object-cover mb-2"/>
+              <span class="text-xl font-bold text-gray-200 mt-2 mb-1">CRISPY THIN</span>
+              <div class="text-gray-200 text-left text-base font-semibold">
+                <div>M <span class="ml-2 font-normal">$9.30</span></div>
+                <div>L <span class="ml-2 font-normal">$14.90</span></div>
+              </div>
+            </div>
+            <div class="flex flex-col items-center min-w-[180px]">
+              <img src="image/pizza/extreme cheese.png" alt="Extreme Cheese" class="w-24 h-24 rounded-full object-cover mb-2"/>
+              <span class="text-xl font-bold text-gray-200 mt-2 mb-1">EXTREME CHEESE</span>
+              <div class="text-gray-200 text-left text-base font-semibold">
+                <div>M <span class="ml-2 font-normal">$17.50</span></div>
+                <div>L <span class="ml-2 font-normal">$21.90</span></div>
+              </div>
+            </div>
+            <div class="flex flex-col items-center min-w-[220px]">
+              <img src="image/pizza/extra cheesy sausage bites.png" alt="Extra Cheesy Sausage Bites" class="w-24 h-24 rounded-full object-cover mb-2"/>
+              <span class="text-xl font-bold text-gray-200 mt-2 mb-1 text-center">EXTRA CHEESY<br/>SAUSAGE BITES</span>
+              <div class="text-gray-200 text-left text-base font-semibold">
+                <div>M <span class="ml-2 font-normal">$18.00</span></div>
+                <div>L <span class="ml-2 font-normal">$23.50</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </section>
+    <section id="Classic-pizza-section" class="w-full bg-white py-16">
+        <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-5xl font-bold mb-8 flex items-center gap-4">
+          <span style="font-family: 'Anta', sans-serif;">CLASSIC PIZZA</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Chicken Caldo.png" alt="Chicken Caldo" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="Chicken Caldo"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">CHICKEN CALDO</h3>
+            <p class="text-sm text-gray-700 mb-2">If you are mad for chicken, don’t miss this one! topped with golden grilled chicken seasoned to perfection to go with pineapple.</p>
+            <p class="text-sm text-gray-700 mb-2">Pineapple, roasted chicken, red & green chilli, pizza sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/double cheese.png" alt="Double Cheese" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="Double Cheese"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">DOUBLE CHEESE</h3>
+            <p class="text-sm text-gray-700 mb-2">One of our classic cheese lover menus. Create your pizza with your choices of toppings while we double up the cheese. umm..</p>
+            <p class="text-sm text-gray-700 mb-2">Mozzarella cheese, pizza sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Double Pepperoni.png" alt="Double Pepperoni" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="Double Pepperoni"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">DOUBLE PEPPERONI</h3>
+            <p class="text-sm text-gray-700 mb-2">Created especially for all pepperoni lovers! Comes with nothing else but pepperoni – two times the normal size</p>
+            <p class="text-sm text-gray-700 mb-2">Pepperoni, pizza sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Ham & Mushroom.png" alt="Ham & Mushroom" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="Ham & Mushroom"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">HAM & MUSHROOM</h3>
+            <p class="text-sm text-gray-700 mb-2">A simple pleasure in every bite.</p>
+            <p class="text-sm text-gray-700 mb-2">Ham, mushroom, pizza sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/cheesy roasted garlic & spinach.png" alt="CHEESY ROASTED GARLIC & SPINACH" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="CHEESY ROASTED GARLIC & SPINACH"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">CHEESY ROASTED GARLIC & SPINACH</h3>
+            <p class="text-sm text-gray-700 mb-2">Roasted garlic, spinach, mushroom, thousand island sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/classic mushroom & tomato.png" alt="CLASSIC MUSHROOM & TOMATO" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="classic mushroom & tomato"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">CLASSIC MUSHROOM & TOMATO</h3>
+            <p class="text-sm text-gray-700 mb-2">Spinach, mushroom & tomato, onion, re & green chilli, pizza sauce</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="Deluxe-pizza-section" class="w-full bg-white py-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-5xl font-bold mb-8 flex items-center gap-4">
+          <span style="font-family: 'Anta', sans-serif;">DELUXE PIZZA</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Super Deluxe.png" alt="SUPER DELUXE" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="SUPER DELUXE"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">SUPER DELUXE</h3>
+            <p class="text-sm text-gray-700 mb-2">We pick the tastiest ingredients and create this sensational menu! Everything from pick ham, bacon, pepperoni, smoke pork, sausage, Italian sausage, pineapple, onion, green capsicum, pizza sausage. That’s why we call it “Super Deluxe”</p>
+            <p class="text-sm text-gray-700 mb-2">Ham, bacon, pepperori, smoke pork sausage, Italain sausage, pineapple, onion, green capsicum, pizza sausage</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Hawaiian.png" alt="HAWAIIAN" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="HAWAIIAN"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">HAWAIIAN</h3>
+            <p class="text-sm text-gray-700 mb-2">Yummy combination of sweet and sour flavour of juicy pineapple with loads of ham and bacon. It’s truly Hawaiian!Yummy combination of sweet and sour flavour of juicy pineapple with loads of ham and bacon. It’s truly Hawaiian!</p>
+            <p class="text-sm text-gray-700 mb-2">Ham, bacon, pineapple, pizza sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Canadian Bacon.png" alt="CANADIAN BACON" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="CANADIAN BACON"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">CANADIAN BACON</h3>
+            <p class="text-sm text-gray-700 mb-2">A canadian style pizza that comes with lots of ham, bacon bits and corns. Very satisfying.</p>
+            <p class="text-sm text-gray-700 mb-2">Ham, bacon, corn, pizza sauce</p>
+          </div>    	
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/BBQ chicken Deluxe.png" alt="BBQ CHICKEN DELUXE" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="BBQ CHICKEN DELUXE"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">BBQ CHICKEN DELUXE</h3>
+            <p class="text-sm text-gray-700 mb-2">A lovely pizza that gives the full flavours of marinade chicken in BBQ sauce, sprinkled with onions, sweet peppers, red and green capsicums. Simply Yummy..!</p>
+            <p class="text-sm text-gray-700 mb-2">BBQ Chicken, onion, red & green chilli, BBQ sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Meat Deluxe.png" alt="MEAT DELUXE" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="MEAT DELUXE"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">MEAT DELUXE</h3>
+            <p class="text-sm text-gray-700 mb-2">For all meat lovers! You’ll love our chunky pork and Italian sausages, pepperoni, ham, bacon, and bacon bits. Satisfaction guaranteed in every bite.</p>
+            <p class="text-sm text-gray-700 mb-2">Ham, bacon, pepperoni, smoke pork sausage, Italian sausage, bacon bit, thousand island sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Italian deluxe.png" alt="ITALAIN DELUXE" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="ITALAIN DELUXE"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">ITALAIN DELUXE</h3>
+            <p class="text-sm text-gray-700 mb-2">A favourite that never goes out of style! Italian sausages, pepperoni, onions, mushrooms and tomatoes. A true Italian spirit in every bite.</p>
+            <p class="text-sm text-gray-700 mb-2">Pepperoni, mushroom, onion, tomato, Italian sausage, thousand island sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/BBQ Pork Deluxe.png" alt="BBQ PORK DELUXE" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="BBQ PORK DELUXE"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">BBQ PORK DELUXE</h3>
+            <p class="text-sm text-gray-700 mb-2">A Pizza with pork and Italian sausages marinated in BBQ sauce, sprinkled with sweet peppers, onions, red and green capsicums in BBQ sauce – all baked to perfection</p>
+            <p class="text-sm text-gray-700 mb-2">Pepperoni, ham, bacon, bacon bit, onion, smoked pork sausage, Italian sausage, red & green chilli, BBQ sauce</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="Seafood-deluxe-section" class="w-full bg-white py-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-5xl font-bold mb-8 flex items-center gap-4">
+          <span style="font-family: 'Anta', sans-serif;">SEAFOOD DELUXE</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Seafood Deluxe.png" alt="SEAFOOD DELUXE" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="SEAFOOD DELUXE"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">SEAFOOD DELUXE</h3>
+            <p class="text-sm text-gray-700 mb-2">Topped with lots of fresh prawns, crab sticks, mussels and calamari with Marinara sauce. It’s real seafood parade!</p>
+            <p class="text-sm text-gray-700 mb-2">Shrimp, crab stick, mussel, squid, onion, green capsicum, pizza sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Shrimp Cocktail.png" alt="SHRIMP COCKTAIL" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="SHRIMP COCKTAIL"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">SHRIMP COCKTAIL</h3>
+            <p class="text-sm text-gray-700 mb-2">Nothing but shrimps! Enjoy them with delicious champignon mushrooms, juicy pineapple, fresh tomatoes and Thousand Island sauce.</p>
+            <p class="text-sm text-gray-700 mb-2">Mushroom, pineapple, tomato, shrimp, thousand islands sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/prawn & ham.png" alt="PRAWN & HAM" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="PRAWN & HAM"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">PRAWN & HAM</h3>
+            <p class="text-sm text-gray-700 mb-2">Topped with lots of fresh prawns, crab sticks, mussels and calamari with Marinara sauce. It’s real seafood parade!</p>
+            <p class="text-sm text-gray-700 mb-2">Ham, shrimp, pizza sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Seafood Cocktail.png" alt="SEAFOOD COCKTAIL" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="SEAFOOD COCKTAIL"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">SEAFOOD COCKTAIL</h3>
+            <p class="text-sm text-gray-700 mb-2">Variety is the keyword for this creation! Fresh prawns, succulent crab sticks, ham and juicy pineapple in Thousand Island sauce. Lovely!</p>
+            <p class="text-sm text-gray-700 mb-2">Shrimp, crab stick, pineapple, ham, thousand islands sauce</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/tom yum kung.png" alt="TOM YUM KUNG" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="TOM YUM KUNG"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">TOM YUM KUNG</h3>
+            <p class="text-sm text-gray-700 mb-2">An authentic east-meets-west pizza indeed! Combining spicy tom yum’s chilli pastes with fresh prawns, calamari and mushroom – so ‘aroi’ you will want more!</p>
+            <p class="text-sm text-gray-700 mb-2">Tom Yum, shrimp, squid, mushroom</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/pizza/Tropical Seafood.png" alt="TROPICAL SEAFOOD" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-pizza" data-pizza="TROPICAL SEAFOOD"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">TROPICAL SEAFOOD</h3>
+            <p class="text-sm text-gray-700 mb-2">This seafood mix of crab sticks, pineapple and Thousand Island sauce is always delightful. A favourite for everyone!</p>
+            <p class="text-sm text-gray-700 mb-2">Crab stick, squid, shrimp, mussel, pineapple, thousand islands sauce</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-black text-white mt-10">
+    <div class="max-w-screen-xl mx-auto px-4 py-16 flex flex-col md:flex-row md:justify-between md:items-start gap-16">
+      <div class="flex items-center gap-3 md:flex-col md:items-start">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+        <h3 class="text-2xl italic font-normal mt-2" style="font-family: 'Kaushan Script';">
+          Little Chicken
+        </h3>
+      </div>
+      <div class="flex flex-col gap-10 md:flex-row md:gap-28 w-full md:w-auto">
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Menu</h4>
+          <ul class="text-sm space-y-2">
+            <li>Chicken Fried</li>
+            <li>Burger</li>
+            <li>French Fried</li>
+            <li>Pizza</li>
+            <li>Drink</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Promotion</h4>
+          <ul class="text-sm space-y-2">
+            <li>Tuesday event</li>
+            <li>Week-end day</li>
+            <li>Anniversary</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Contact Us</h4>
+          <address class="not-italic text-sm space-y-2">
+            <p>No. 246, 5th Floor, Royal Group Building, Preah Monivong Blvd, Phnom Penh, Cambodia</p>
+            <p>Office: 012 343 543</p>
+            <p>Delivery: 015 356 782</p>
+            <p>096 777 8888</p>
+            <p>097 777 8888</p>
+            <p>
+              Our Email:
+              <a class="underline" href="mailto:info@littlechicken.com.kh">
+                info@littlechicken.com.kh
+              </a>
+            </p>
+          </address>
+        </div>
+      </div>
+    </div>
+    <hr class="border-gray-700"/>
+  </footer>
+  <div id="pizza-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-lg p-8 w-full max-w-md flex flex-col gap-6 relative">
+    <button id="close-pizza-modal" class="absolute top-2 right-2 text-gray-500 hover:text-orange-500 text-2xl">&times;</button>
+    <h3 class="text-2xl font-bold mb-2" id="modal-pizza-title">Select Pizza Crust & Size</h3>
+    <form id="pizza-order-form" class="flex flex-col gap-4">
+      <div>
+        <label class="block font-semibold mb-1">Crust</label>
+        <select id="modal-crust" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required>
+          <option value="">Select Crust</option>
+          <option value="PAN">PAN</option>
+          <option value="CRISPY THIN">CRISPY THIN</option>
+          <option value="EXTREME CHEESE">EXTREME CHEESE</option>
+          <option value="EXTRA CHEESY SAUSAGE BITES">EXTRA CHEESY SAUSAGE BITES</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1">Size</label>
+        <select id="modal-size" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required>
+          <option value="">Select Size</option>
+          <option value="S">Small</option>
+          <option value="M">Medium</option>
+          <option value="L">Large</option>
+        </select>
+      </div>
+      <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded font-semibold">Add to Cart</button>
+    </form>
+    <div id="pizza-modal-msg" class="text-green-600 text-center font-semibold hidden">Added to cart!</div>
+  </div>
+</div>
+  <script src="style.js"></script>
+  <script>
+    if (document.getElementById('pizza-modal')) {
+        document.querySelectorAll('.select-pizza').forEach(function(img) {
+          img.addEventListener('click', function() {
+            document.getElementById('pizza-modal').classList.remove('hidden');
+            document.getElementById('modal-pizza-title').textContent = "Select Crust & Size for " + img.getAttribute('data-pizza');
+            document.getElementById('pizza-modal-msg').classList.add('hidden');
+            document.getElementById('pizza-order-form').reset();
+            document.getElementById('pizza-order-form').setAttribute('data-pizza-name', img.getAttribute('data-pizza'));
+            document.getElementById('pizza-order-form').setAttribute('data-pizza-img-id', img.getAttribute('src'));
+            updateSizeOptions();
+          });
+        });
+        document.getElementById('close-pizza-modal').onclick = function() {
+          document.getElementById('pizza-modal').classList.add('hidden');
+        };
+
+        document.getElementById('pizza-order-form').onsubmit = function(e) {
+          e.preventDefault();
+          const pizzaName = this.getAttribute('data-pizza-name');
+          const crust = document.getElementById('modal-crust').value;
+          const size = document.getElementById('modal-size').value;
+          if (!pizzaName || !crust || !size) return;
+
+          // Find the image element for animation
+          let imgSrc = "";
+          let imgElem = null;
+          document.querySelectorAll('.select-pizza').forEach(function(img) {
+            if (img.getAttribute('data-pizza') === pizzaName) {
+              imgSrc = img.getAttribute('src');
+              imgElem = img;
+            }
+          });
+
+          // Fallback for image source if not found
+          if (!imgSrc) {
+            imgSrc = "image/pizza/" + pizzaName.replace(/ /g, "_").replace(/&/g, "and").toLowerCase() + ".png";
+          }
+
+          const item = {
+            img: imgSrc,
+            name: pizzaName + " (" + crust + ", " + size + ")",
+            desc: crust + " crust, size " + size,
+            qty: 1,
+            price: getPizzaPrice(crust, size)
+          };
+
+          // Use global addToCart function (from style.js)
+          window.addToCart(item, imgElem);
+
+          document.getElementById('pizza-modal-msg').classList.remove('hidden');
+          setTimeout(function() {
+            document.getElementById('pizza-modal').classList.add('hidden');
+            document.getElementById('pizza-modal-msg').classList.add('hidden');
+          }, 1200);
+        };
+
+        function getPizzaPrice(crust, size) {
+          const prices = {
+            "PAN": { S: 5.10, M: 9.30, L: 14.90 },
+            "CRISPY THIN": { M: 9.30, L: 14.90 },
+            "EXTREME CHEESE": { M: 17.50, L: 21.90 },
+            "EXTRA CHEESY SAUSAGE BITES": { M: 18.00, L: 23.50 }
+          };
+          return (prices[crust] && prices[crust][size]) ? prices[crust][size] : 0;
+        }
+
+        function updateSizeOptions() {
+          var crust = document.getElementById('modal-crust').value;
+          var sizeSelect = document.getElementById('modal-size');
+          for (var i = 0; i < sizeSelect.options.length; i++) {
+            var opt = sizeSelect.options[i];
+            if (opt.value === "S") {
+              opt.style.display = (crust === "PAN") ? "" : "none";
+            }
+          }
+          if (crust !== "PAN" && (sizeSelect.value === "S")) {
+            sizeSelect.value = "";
+          }
+        }
+        document.getElementById('modal-crust').addEventListener('change', updateSizeOptions);
+      }
+
+      // --- About Page Logic (from about.html) ---
+      if (document.getElementById('back-arrow')) {
+        const backArrow = document.getElementById('back-arrow');
+        backArrow.addEventListener('click', function () {
+          window.history.back();
+        });
+      }
+  </script>
+</body>
+</html>

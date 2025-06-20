@@ -1,0 +1,60 @@
+body {
+      font-family: 'Anta', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+}
+main {
+      flex-grow: 1;
+      width: 100vw;
+      overflow-x: hidden;
+}
+.hero-fullscreen-img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+@media (max-width: 768px) {
+    .hero-fullscreen-img {
+        height: 220px;
+        width: 100vw;
+    }
+}
+
+/* Hide scrollbar for all browsers */
+body, main, html, #mobile-menu {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+body::-webkit-scrollbar,
+main::-webkit-scrollbar,
+html::-webkit-scrollbar,
+#mobile-menu::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Hide scrollbar for menu item grid */
+.menu-grid-scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.menu-grid-scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.menu-card {
+  min-width: 220px;
+  max-width: 220px;
+  min-height: 270px;
+  max-height: 270px;
+  padding: 1rem; /* same as p-4 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background: white;
+  border-radius: 0.5rem; /* same as rounded */
+  border: 1px solid #d1d5db; /* same as border-gray-300 */
+}

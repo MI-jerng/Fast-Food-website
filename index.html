@@ -1,0 +1,259 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Little Chicken
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="image/logo1.png"/>
+ </head>
+ <body>
+  <header class="bg-black w-full fixed top-0 left-0 z-50">
+    <div class="max-w-full mx-auto flex items-center justify-between px-4 py-2">
+      <div class="flex items-center space-x-4">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+      </div>
+      <!-- Hamburger and search icon for mobile -->
+      <div class="flex md:hidden items-center space-x-4">
+        <button aria-label="Search" class="text-white text-2xl hover:text-orange-500" id="search-btn-mobile">
+          <i class="fas fa-search"></i>
+        </button>
+        <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-white text-base">
+     <a class="hover:text-orange-500" href="#">
+      Home
+     </a>
+     <a class="hover:text-orange-500" href="about.html">
+      About us
+     </a>
+     <a class="hover:text-orange-500" href="#menu-category">
+      Menu
+     </a>
+    </nav>
+    <div class="hidden md:flex space-x-6 text-white text-xl relative" id="header-search-container">
+     <!-- Animated Search Bar (hidden by default, black background, slides left) -->
+     <div id="header-search-bar"
+          class="absolute top-0 h-full flex items-center z-50 w-0 overflow-hidden bg-black rounded transition-all duration-300"
+          style="box-shadow: 0 2px 8px rgba(0,0,0,0.15); right: 8rem;">
+       <input id="header-search-input" type="text" placeholder="Search menu items..." class="opacity-0 w-0 border-none px-0 py-2 text-white bg-black focus:outline-none placeholder-gray-400 transition-all duration-300" />
+     </div>
+     <!-- This is the always-visible search icon (outside the bar) -->
+     <button aria-label="Search" class="hover:text-orange-500" id="search-btn">
+      <i class="fas fa-search"></i>
+     </button>
+     <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+      <i class="fas fa-user-circle"></i>
+     </a>
+     <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+      <i class="fas fa-shopping-cart"></i>
+     </a>
+    </div>  
+   </div>
+   <!-- Mobile menu (hidden by default) -->
+   <nav id="mobile-menu" class="md:hidden hidden bg-black text-white px-4 py-4 space-y-4">
+    <a class="block hover:text-orange-500" href="#">Home</a>
+    <a class="block hover:text-orange-500" href="about.html">About us</a>
+    <a class="block hover:text-orange-500" href="#menu-category">Menu</a>
+    <div class="flex space-x-6 text-xl mt-2">
+      <!-- Remove search icon here, keep only user and cart -->
+      <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+        <i class="fas fa-user-circle"></i>
+      </a>
+      <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+    </div>
+   </nav>
+   <!-- Mobile search dropdown (hidden by default) -->
+   <div id="mobile-search-dropdown" class="md:hidden fixed left-0 right-0 top-[64px] z-40 bg-black px-4 py-3 hidden">
+     <input id="mobile-search-input" type="text" placeholder="Search menu items..." class="w-full rounded px-3 py-2 bg-gray-900 text-white placeholder-gray-400 focus:outline-none text-base" />
+     <ul id="mobile-search-results" class="mt-2 bg-black rounded shadow-lg border border-gray-700 max-h-64 overflow-y-auto divide-y divide-gray-800 text-white hidden"></ul>
+   </div>
+  </header>
+  <main id="main-content" class="mt-20">
+   <section id="hero-section" class="relative w-full h-[400px] sm:h-[420px] md:h-[600px] max-w-full mx-auto flex items-center justify-center overflow-hidden p-0">
+    <img src="image/Burger logo1.png" alt="Slide 1" id="bg1"
+       class="absolute inset-0 w-full h-full object-cover opacity-90 z-0 pointer-events-none transition-opacity duration-500 backdrop-blur-md" style="object-position: center;"/>
+    <img src="image/pizza.png" alt="Slide 2" id="bg2"
+       class="absolute inset-0 w-full h-full object-cover opacity-0 z-0 pointer-events-none transition-opacity duration-500 backdrop-blur-md" style="object-position: center;"/>
+    <img src="image/slide 3.png" alt="Slide 3" id="bg3"
+       class="absolute inset-0 w-full h-full object-cover opacity-0 z-0 pointer-events-none transition-opacity duration-500 backdrop-blur-md" style="object-position: center;"/>
+    <div class="absolute inset-0 bg-black opacity-50 z-10 pointer-events-none"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center space-y-4 sm:space-y-6 z-10 px-2 sm:px-4 md:px-0 text-white">
+      <h1 class="text-3xl sm:text-5xl md:text-7xl font-normal leading-tight">
+        The Fast food
+        <br/>
+        heaven
+      </h1>
+      <p class="text-base sm:text-lg md:text-2xl font-normal max-w-xs sm:max-w-xl md:max-w-2xl">
+        Welcome to our Fast Food paradise, where every bite is a journey into flavor perfection!
+      </p>
+      <a class="bg-orange-500 hover:bg-orange-600 text-white text-base sm:text-lg md:text-xl font-normal rounded-md px-6 sm:px-10 py-2 sm:py-3 mt-2 sm:mt-4" href="index.html#menu-category">
+        Order Now
+      </a>
+    </div>
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 sm:space-x-3 z-20">
+     <span class="w-3 sm:w-5 h-1 rounded-full bg-orange-500" id="dot1"></span>
+     <span class="w-3 sm:w-5 h-1 rounded-full bg-gray-400" id="dot2"></span>
+     <span class="w-3 sm:w-5 h-1 rounded-full bg-gray-400" id="dot3"></span>
+    </div>
+   </section>
+   <!-- banner promotion -->
+   <section class="w-full mx-auto px-2 sm:px-6 py-8 max-w-7xl">
+  <div class="flex flex-nowrap gap-4 overflow-x-auto md:grid md:grid-cols-3 md:gap-6 menu-grid-scrollbar-hide">
+    <div class="bg-black text-white flex flex-col sm:flex-row min-w-[260px] md:min-w-0">
+      <img alt="Cheese burger with lettuce, tomato, cheese, and beef patty" class="w-full sm:w-1/2 object-cover h-40 sm:h-auto" src="https://storage.googleapis.com/a1aa/image/7a19c2c0-8815-4e9d-995d-bb1089ecc0f2.jpg"/>
+      <div class="p-4 flex flex-col justify-center w-full sm:w-1/2 space-y-2 sm:space-y-4">
+        <h3 class="text-lg sm:text-xl font-normal italic">
+          Cheeses Burger
+        </h3>
+        <p class="text-xs sm:text-sm font-normal">
+          get
+          <span class="text-orange-500 font-semibold">
+            50%
+          </span>
+          discount every Wednesday evening.
+        </p>
+        <p class="text-white text-right text-base sm:text-xl font-normal">
+          Only 4.99$
+        </p>
+      </div>
+    </div>
+    <div class="bg-black flex flex-col sm:flex-row min-w-[260px] md:min-w-0">
+      <img alt="Plate with fried chicken pieces on black background" class="w-full sm:w-1/2 object-cover h-40 sm:h-auto" src="https://storage.googleapis.com/a1aa/image/1cb4e283-e321-40db-a4a3-e6299c8cfa42.jpg"/>
+      <div class="p-4 flex flex-col justify-center w-full sm:w-1/2 space-y-2 sm:space-y-4 text-orange-500">
+        <h3 class="text-lg sm:text-xl font-normal italic">
+          Chicken Fried hala
+        </h3>
+        <p class="text-xs sm:text-sm font-normal text-white">
+          Buy 1 get
+          <span class="font-semibold">
+            2
+          </span>
+          chicken fried with the best flavor in fast bite.
+        </p>
+        <p class="text-white text-right text-base sm:text-xl font-normal">
+          Only 2.50$
+        </p>
+      </div>
+    </div>
+    <div class="bg-orange-400 flex flex-col sm:flex-row text-white min-w-[260px] md:min-w-0">
+      <img alt="Super set burger meal with burger, fries, drink and sauces on orange background" class="w-full sm:w-1/2 object-cover h-40 sm:h-auto" src="https://storage.googleapis.com/a1aa/image/f3bbf328-0b66-4729-9c2c-1383260b832f.jpg"/>
+      <div class="p-4 flex flex-col justify-center w-full sm:w-1/2 space-y-2 sm:space-y-4">
+        <h3 class="text-lg sm:text-xl font-normal italic">
+          Super Set burger
+        </h3>
+        <p class="text-xs sm:text-sm font-normal">
+          All in 1 Set. Have only this week. Buy it to get new experience.
+        </p>
+        <p class="text-white text-right text-base sm:text-xl font-normal">
+          Only 8.99$
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+   <!-- New Categories Section (below banner/hero) -->
+   <section id="menu-category" class="w-full bg-white py-8 sm:py-12">
+     <h2 class="text-center text-2xl sm:text-4xl md:text-5xl font-bold tracking-wide mb-6 sm:mb-12 text-orange-500" style="letter-spacing: 2px;">
+       BROWSE MENU CATEGORIES
+     </h2>
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-8 sm:gap-y-12 gap-x-4 sm:gap-x-8 justify-items-center">
+            <div class="flex flex-col items-center">
+              <a href="pizza.html">
+                <img src="image/pizza category.png" alt="Pizza" class="w-24 sm:w-40 h-24 sm:h-40 object-contain mb-2 sm:mb-3 hover:scale-105 transition-transform"/>
+              </a>
+              <span class="text-base sm:text-lg md:text-xl font-semibold tracking-widest text-gray-700">PIZZA</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <a href="burger.html">
+                <img src="image/Burger category.png" alt="Burger" class="w-24 sm:w-40 h-24 sm:h-40 object-contain mb-2 sm:mb-3 hover:scale-105 transition-transform"/>
+              </a>
+              <span class="text-base sm:text-lg md:text-xl font-semibold tracking-widest text-gray-700">BURGER</span>
+            </div>
+         <div class="flex flex-col items-center">
+           <img src="image/chicken fried category.png" alt="Bite Pizza" class="w-24 sm:w-40 h-24 sm:h-40 object-contain mb-2 sm:mb-3"/>
+           <span class="text-base sm:text-lg md:text-xl font-semibold tracking-widest text-gray-700">CHICKEN SET</span>
+         </div>
+         <div class="flex flex-col items-center">
+           <img src="image/main dish.png" alt="Main Dish" class="w-24 sm:w-40 h-24 sm:h-40 object-contain mb-2 sm:mb-3"/>
+           <span class="text-base sm:text-lg md:text-xl font-semibold tracking-widest text-gray-700">MAIN DISH</span>
+         </div>
+         <div class="flex flex-col items-center">
+           <img src="image/salad category.png" alt="Salad" class="w-24 sm:w-40 h-24 sm:h-40 object-contain mb-2 sm:mb-3"/>
+           <span class="text-base sm:text-lg md:text-xl font-semibold tracking-widest text-gray-700">SALAD</span>
+         </div>
+         <div class="flex flex-col items-center">
+           <img src="image/ice cream category.jpg" alt="Desserts" class="w-24 sm:w-40 h-24 sm:h-40 object-contain mb-2 sm:mb-3"/>
+           <span class="text-base sm:text-lg md:text-xl font-semibold tracking-widest text-gray-700">DESSERTS</span>
+         </div>
+         <div class="flex flex-col items-center">
+           <img src="image/drink.png" alt="Beverages" class="w-24 sm:w-40 h-24 sm:h-40 object-contain mb-2 sm:mb-3"/>
+           <span class="text-base sm:text-lg md:text-xl font-semibold tracking-widest text-gray-700">BEVERAGES</span>
+         </div>
+         <div class="flex flex-col items-center">
+           <img src="image/chicken.png" alt="Chicken" class="w-24 sm:w-40 h-24 sm:h-40 object-contain mb-2 sm:mb-3"/>
+           <span class="text-base sm:text-lg md:text-xl font-semibold tracking-widest text-gray-700">CHICKEN</span>
+         </div>
+       </div>
+     </div>
+   </section>
+  <footer class="bg-black text-white mt-10">
+    <div class="max-w-screen-xl mx-auto px-4 py-16 flex flex-col md:flex-row md:justify-between md:items-start gap-16">
+      <div class="flex items-center gap-3 md:flex-col md:items-start">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+        <h3 class="text-2xl italic font-normal mt-2" style="font-family: 'Kaushan Script';">
+          Little Chicken
+        </h3>
+      </div>
+      <div class="flex flex-col gap-10 md:flex-row md:gap-28 w-full md:w-auto">
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Menu</h4>
+          <ul class="text-sm space-y-2">
+            <li>Chicken Fried</li>
+            <li>Burger</li>
+            <li>French Fried</li>
+            <li>Pizza</li>
+            <li>Drink</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Promotion</h4>
+          <ul class="text-sm space-y-2">
+            <li>Tuesday event</li>
+            <li>Week-end day</li>
+            <li>Anniversary</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Contact Us</h4>
+          <address class="not-italic text-xs space-y-2">
+            <p>No. 246, 5th Floor, Royal Group Building, Preah Monivong Blvd, Phnom Penh, Cambodia</p>
+            <p>Office: 012 343 543</p>
+            <p>Delivery: 015 356 782</p>
+            <p>096 777 8888</p>
+            <p>097 777 8888</p>
+            <p>
+              Our Email:
+              <a class="underline" href="mailto:info@littlechicken.com.kh">
+                info@littlechicken.com.kh
+              </a>
+            </p>
+          </address>
+        </div>
+      </div>
+    </div>
+    <hr class="border-gray-700"/>
+  </footer>
+  <script src="style.js"></script>
+</body>
+</html>

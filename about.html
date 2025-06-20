@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Little Chicken</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="image/logo1.png"/>
+</head>
+<header class="bg-black w-full fixed top-0 left-0 z-50">
+  <div class="max-w-full mx-auto flex items-center justify-between px-4 py-2">
+    <div class="flex items-center space-x-4">
+     <img alt="Little Chicken logo with a chicken icon and text Little Chicken" class="w-16 h-16 object-contain" height="64" src="image/logo1.png" width="64"/>
+    </div>
+    <!-- Hamburger and search icon for mobile -->
+    <div class="flex md:hidden items-center space-x-4">
+      <button aria-label="Search" class="text-white text-2xl hover:text-orange-500" id="search-btn-mobile">
+        <i class="fas fa-search"></i>
+      </button>
+      <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <nav class="hidden md:flex space-x-6 text-white text-base">
+     <a class="hover:text-orange-500" href="index.html">
+      Home
+     </a>
+     <a class="hover:text-orange-500" href="about.html">
+      About us
+     </a>
+     <a class="hover:text-orange-500" href="index.html#menu-category">
+      Menu
+     </a>
+    </nav>
+    <div class="hidden md:flex space-x-6 text-white text-xl relative" id="header-search-container">
+     <!-- Animated Search Bar (hidden by default, black background, slides left) -->
+     <div id="header-search-bar"
+          class="absolute top-0 h-full flex items-center z-50 w-0 overflow-hidden bg-black rounded transition-all duration-300"
+          style="box-shadow: 0 2px 8px rgba(0,0,0,0.15); right: 8rem;">
+       <input id="header-search-input" type="text" placeholder="Search menu items..." class="opacity-0 w-0 border-none px-0 py-2 text-white bg-black focus:outline-none placeholder-gray-400 transition-all duration-300" />
+     </div>
+     <button aria-label="Search" class="hover:text-orange-500" id="search-btn">
+      <i class="fas fa-search"></i>
+     </button>
+     <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+      <i class="fas fa-user-circle"></i>
+     </a>
+     <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+      <i class="fas fa-shopping-cart"></i>
+     </a>
+    </div>
+   </div>
+   <!-- Mobile menu (hidden by default) -->
+   <nav id="mobile-menu" class="md:hidden hidden bg-black text-white px-4 py-4 space-y-4">
+    <a class="block hover:text-orange-500" href="index.html">Home</a>
+    <a class="block hover:text-orange-500" href="about.html">About us</a>
+    <a class="block hover:text-orange-500" href="index.html#menu-category">Menu</a>
+    <div class="flex space-x-6 text-xl mt-2">
+      <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+        <i class="fas fa-user-circle"></i>
+      </a>
+      <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+    </div>
+   </nav>
+   <!-- Mobile search dropdown (hidden by default) -->
+   <div id="mobile-search-dropdown" class="md:hidden fixed left-0 right-0 top-[64px] z-40 bg-black px-4 py-3 hidden">
+    <input id="mobile-search-input" type="text" placeholder="Search menu items..." class="w-full rounded px-3 py-2 bg-gray-900 text-white placeholder-gray-400 focus:outline-none text-base" />
+    <ul id="mobile-search-results" class="mt-2 bg-black rounded shadow-lg border border-gray-700 max-h-64 overflow-y-auto divide-y divide-gray-800 text-white hidden"></ul>
+  </div>
+  </header>
+<body>
+  <!-- Hero Image with text overlay -->
+  <section class="relative w-full h-[180px] sm:h-[260px] md:h-[400px] lg:h-[600px] max-w-full mx-auto mt-24 overflow-hidden">
+    <img
+      alt="Close-up of a brown paper box with Little Chicken logo featuring a chicken holding a drumstick, fried chicken in background"
+      src="image/logo.png"
+      class="absolute inset-0 w-full h-full object-cover z-0"
+    />
+    <!-- Arrow stays top left -->
+    <a id="back-arrow" aria-label="Back" class="absolute top-4 left-4 sm:top-8 sm:left-8 text-black hover:text-orange-500 text-xl sm:text-2xl z-20 cursor-pointer">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <!-- Responsive text overlay -->
+    <div class="absolute top-1/2 left-24 -translate-y-1/2 flex flex-col items-start z-10 px-2 sm:px-0
+                sm:left-24 sm:-translate-x-0
+                left-1/2 -translate-x-1/2 items-center
+                sm:items-start
+                "
+         style="width: max-content;">
+      <span class="text-white text-base xs:text-lg sm:text-3xl md:text-4xl font-bold">About us</span>
+      <nav class="mt-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-white hover:text-orange-500">Home</a>
+        <span class="mx-1 text-gray-200">&gt;</span>
+        <span class="text-orange-500">About us</span>
+      </nav>
+    </div>
+  </section>
+  <!-- Content -->
+  <main class="max-w-5xl mx-auto px-2 sm:px-4 mt-4 sm:mt-6 text-sm sm:text-base md:text-lg leading-6">
+   <p class="mb-4">
+    &gt; It all started with a simple idea — to serve delicious, crispy fried chicken that brings a smile with every bite. At Little Chicken, we began with just a small kitchen, a family recipe, and a big dream: to make great food that’s fast, fresh, and full of flavor. People come for the chicken, but stayed for the taste, the friendly service, and the cozy vibe. Our name may be
+    <span class="text-red-600 font-semibold">
+     Little Chicken
+    </span>
+    , but we’ve got big heart and big flavor. From crunchy wings to juicy burgers, everything we serve is made with care. Today, Little Chicken is more than just a food stop — it’s a place where friends gather, families enjoy, and cravings are satisfied. Come taste the story. Come taste the love. Come taste Little Chicken.
+   </p>
+   <p class="mb-4">
+    &gt; At
+    <a class="text-red-600 underline" href="#">
+     Little Chicken
+    </a>
+    , we’re passionate about serving fresh, delicious fast food made with quality ingredients and a whole lot of love. From our juicy burgers and crispy fried chicken to our golden fries and refreshing drinks, every item on our menu is prepared with care and flavor in mind. We believe that good food doesn’t have to take hours — that’s why we focus on fast service without ever compromising on taste. Whether you’re grabbing a quick lunch, sharing a meal with friends, or picking up dinner for the family, we’re here to serve up your favorites with a smile. We’re more than just a fast food spot — we’re a place where good food and good people come together. Clean, casual, and welcoming, our shop is designed to make you feel right at home. Thank you for choosing [Your Shop Name]. We’re proud to be part of your community, and we can’t wait to serve you again soon!
+   </p>
+   <p class="mb-2 font-semibold text-red-600 underline">
+    Little Chicken In CAMBODIA
+   </p>
+   <ol class="list-decimal list-inside space-y-1 text-[15px]">
+    <li>
+     Little Chicken Manivong (Open 24 hours)
+    </li>
+    <li>
+     Little Chicken Sovanna (Open hour 10:00am to 10:00pm)
+    </li>
+    <li>
+     Little Chicken Norodom (Open hour 8:00am to 10:00pm)
+    </li>
+    <li>
+     Little Chicken Siem Reap (Open hour 9:00am to 2:00am)
+    </li>
+    <li>
+     Little Chicken Kampuchea Krom (Open 24 hours)
+    </li>
+    <li>
+     Little Chicken CG Mall (Open hour 10:00am to 11:00pm)
+    </li>
+    <li>
+     Little Chicken Toul Tompong (Open hour 9:00am to 11:30pm)
+    </li>
+    <li>
+     Little Chicken AEON Mall (Open 9:00am to 10:00pm)
+    </li>
+    <li>
+     Little Chicken Beung Kengkang (Open 24 hours)
+    </li>
+    <li>
+     Little Chicken Furi Mall (Open 9:00am to 11:00pm)
+    </li>
+    <li>
+     Little Chicken Steung Meanchey (Open hour 9:00am to 10:00pm)
+    </li>
+    <li>
+     Little Chicken Battambang (Open 10:00am to 10:00pm)
+    </li>
+    <li>
+     Little Chicken Prince Golden Bay (Open 10:00pm to 10:00pm)
+    </li>
+   </ol>
+  </main>
+
+  <!-- Footer (copy from index.html) -->
+  <footer class="bg-black text-white mt-10">
+    <div class="max-w-screen-xl mx-auto px-4 py-16 flex flex-col md:flex-row md:justify-between md:items-start gap-16">
+      <div class="flex items-center gap-3 md:flex-col md:items-start">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" height="64" src="image/logo1.png" width="64"/>
+        <h3 class="text-2xl italic font-normal mt-2" style="font-family: 'Kaushan Script';">
+          Little Chicken
+        </h3>
+      </div>
+      <div class="flex flex-col gap-10 md:flex-row md:gap-28 w-full md:w-auto">
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Menu</h4>
+          <ul class="text-sm space-y-2">
+            <li>Chicken Fried</li>
+            <li>Burger</li>
+            <li>French Fried</li>
+            <li>Pizza</li>
+            <li>Drink</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Promotion</h4>
+          <ul class="text-sm space-y-2">
+            <li>Tuesday event</li>
+            <li>Week-end day</li>
+            <li>Anniversary</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Contact Us</h4>
+          <address class="not-italic text-xs space-y-2">
+            <p>No. 246, 5th Floor, Royal Group Building, Preah Monivong Blvd, Phnom Penh, Cambodia</p>
+            <p>Office: 012 343 543</p>
+            <p>Delivery: 015 356 782</p>
+            <p>096 777 8888</p>
+            <p>097 777 8888</p>
+            <p>
+              Our Email:
+              <a class="underline" href="mailto:info@littlechicken.com.kh">
+                info@littlechicken.com.kh
+              </a>
+            </p>
+          </address>
+        </div>
+      </div>
+    </div>
+    <hr class="border-gray-700"/>
+  </footer>
+  <script src="style.js"></script>
+</body>
+</html>

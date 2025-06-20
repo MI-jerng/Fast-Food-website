@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Little Chicken</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="image/logo1.png"/>
+</head>
+<body>
+  <header class="bg-black w-full fixed top-0 left-0 z-50">
+    <div class="max-w-full mx-auto flex items-center justify-between px-4 py-2">
+      <div class="flex items-center space-x-4">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+      </div>
+      <!-- Hamburger and search icon for mobile -->
+      <div class="flex md:hidden items-center space-x-4">
+        <button aria-label="Search" class="text-white text-2xl hover:text-orange-500" id="search-btn-mobile">
+          <i class="fas fa-search"></i>
+        </button>
+        <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-white text-base">
+        <a class="hover:text-orange-500" href="index.html">Home</a>
+        <a class="hover:text-orange-500" href="about.html">About us</a>
+        <a class="hover:text-orange-500" href="index.html#menu-category">Menu</a>
+      </nav>
+      <div class="hidden md:flex space-x-6 text-white text-xl relative" id="header-search-container">
+        <div id="header-search-bar"
+             class="absolute top-0 h-full flex items-center z-50 w-0 overflow-hidden bg-black rounded transition-all duration-300"
+             style="box-shadow: 0 2px 8px rgba(0,0,0,0.15); right: 8rem;">
+          <input id="header-search-input" type="text" placeholder="Search menu items..." class="opacity-0 w-0 border-none px-0 py-2 text-white bg-black focus:outline-none placeholder-gray-400 transition-all duration-300" />
+        </div>
+        <button aria-label="Search" class="hover:text-orange-500" id="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+        <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="md:hidden hidden bg-black text-white px-4 py-4 space-y-4">
+      <a class="block hover:text-orange-500" href="index.html">Home</a>
+      <a class="block hover:text-orange-500" href="about.html">About us</a>
+      <a class="block hover:text-orange-500" href="index.html#menu-category">Menu</a>
+      <div class="flex space-x-6 text-xl mt-2">
+        <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </nav>
+    <!-- Mobile search dropdown (hidden by default) -->
+    <div id="mobile-search-dropdown" class="md:hidden fixed left-0 right-0 top-[64px] z-40 bg-black px-4 py-3 hidden">
+      <input id="mobile-search-input" type="text" placeholder="Search menu items..." class="w-full rounded px-3 py-2 bg-gray-900 text-white placeholder-gray-400 focus:outline-none text-base" />
+      <ul id="mobile-search-results" class="mt-2 bg-black rounded shadow-lg border border-gray-700 max-h-64 overflow-y-auto divide-y divide-gray-800 text-white hidden"></ul>
+    </div>
+  </header>
+  <main class="mt-24">
+    <section id="buregr-section" class="w-full bg-white py-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-7xl font-bold text-orange-400 mb-8 flex items-center gap-4">
+          <span style="font-family: 'Anta', sans-serif;">BURGER</span>
+        </h2>
+        <div class="flex flex-wrap gap-8 justify-center mb-8">
+          <a class="text-lg md:text-xl font-semibold tracking-widest text-gray-700 px-4 py-2 hover:text-orange-500 focus:outline-none" href="#beef-burger-section">BEEF BURGER</a>
+          <a class="text-lg md:text-xl font-semibold tracking-widest text-gray-700 px-4 py-2 hover:text-orange-500 focus:outline-none" href="#chicken-burger-section">CHICKEN BURGER</a>
+          <a class="text-lg md:text-xl font-semibold tracking-widest text-gray-700 px-4 py-2 hover:text-orange-500 focus:outline-none" href="#fish-burger-section">FISH BURGER</a>
+        </div>
+    <section id="beef-burger-section" class="w-full bg-white py-16">
+        <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-5xl font-bold mb-8 flex items-center gap-4">
+          <span style="font-family: 'Anta', sans-serif;">BEEF BURGER</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div class="flex flex-col items-center">
+            <img src="image/burger/classic cheese burger.png" alt="CLASSIC CHEESE BURGER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="classic cheese burger"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">CLASSIC CHEESE BURGER</h3>
+            <p class="text-sm text-gray-700 mb-2">Grilled beef patty, melted American cheese, sliced dill pickles, ketchup, mustard, toasted sesame seed bun.</p>
+            <p class="text-lg text-gray-700 mb-2">4.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/double beef burger.png" alt="DOUBLE BEEF BURGER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="Double beef burger"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">DOUBLE BEEF BUREGR</h3>
+            <p class="text-sm text-gray-700 mb-2">Flame-grilled beef patties, ripe tomatoes, crisp lettuce, creamy mayonnaise, ketchup, crunchy pickles, sliced white onions, toasted sesame seed bun.</p>
+            <p class="text-lg text-gray-700 mb-2">6.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/triple beef burger.png" alt="TRIPLE BEEF BURGER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-buregr" data-burger="triple beef burger"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">TRIPLE BEEF BURGER</h3>
+            <p class="text-sm text-gray-700 mb-2">Three flame-grilled beef patties, ripe tomatoes, crisp lettuce, creamy mayonnaise, ketchup, crunchy pickles, sliced white onions, toasted sesame seed bun.</p>
+            <p class="text-lg text-gray-700 mb-2">9.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/double cheeseburger.png" alt="DOUBLE CHEESEBURGER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="DOUBLE CHEESEBURGER"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">DOUBLE CHEESEBURGER</h3>
+            <p class="text-sm text-gray-700 mb-2">Two grilled beef patties, two slices of melted cheese, fresh lettuce, sliced tomatoes, onions, pickles, ketchup, mustard, toasted sesame seed bun.</p>
+            <p class="text-lg text-gray-700 mb-2">9.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/bacon cheeseburger.png" alt="BACON CHEESEBURGER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="bacon cheeseburger"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">BACON CHEESEBURGER</h3>
+            <p class="text-sm text-gray-700 mb-2">Grilled beef patty, melted cheese, crispy bacon, fresh lettuce, ripe tomato, special sauce, toasted bun.</p>
+            <p class="text-lg text-gray-700 mb-2">4.99$</p>
+          </div>
+      </div>
+    </section>
+    <section id="chicken-burger-section" class="w-full bg-white py-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-5xl font-bold mb-8 flex items-center gap-4">
+          <span style="font-family: 'Anta', sans-serif;">CHICKEN BURGER</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div class="flex flex-col items-center">
+            <img src="image/burger/crispy chicken burger.png" alt="CRISPY CHICKEN BURGER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-buregr" data-burger="crispy chicken burger"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">CRISPY CHICKEN BURGER</h3>
+            <p class="text-sm text-gray-700 mb-2">Crispy fried chicken fillet, melted cheese, fresh lettuce, sliced tomatoes, onions, pickles, tangy sauce, mayonnaise, toasted sesame seed bun.</p>
+            <p class="text-lg text-gray-700 mb-2">4.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/bbq bacon chicken burger.png" alt="BBQ BACON CHICKEN BURGER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="BBQ bacon chicken burger"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">BBQ BACON CHICKEN BURGER</h3>
+            <p class="text-sm text-gray-700 mb-2">Crispy fried chicken fillet, smoky BBQ sauce, crispy bacon, fresh lettuce, ripe tomato, creamy mayonnaise, toasted bun.</p>
+            <p class="text-lg text-gray-700 mb-2">4.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/crunchy chicken burger.png" alt="CRUNCHY CHICKEN BURGER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="Crunchy chicken burger"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">CRUNCHY CHICKEN BURGER</h3>
+            <p class="text-sm text-gray-700 mb-2">Crispy fried chicken fillet, fresh shredded lettuce, sliced tomatoes, pickles, creamy mayonnaise, toasted sesame seed bun.</p>
+            <p class="text-lg text-gray-700 mb-2">4.99$</p>
+          </div>    	
+          <div class="flex flex-col items-center">
+            <img src="image/burger/the clucking tower.png" alt="THE CLUCKING TOWER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-buregr" data-burger=""="THE CLUCKING TOWER"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">THE CLUCKING TOWER</h3>
+            <p class="text-sm text-gray-700 mb-2">Double layers of perfectly crispy chicken, melted golden cheddar, fresh vibrant lettuce, and a signature creamy sauce, all brought together on a perfectly toasted, savory bun.</p>
+            <p class="text-lg text-gray-700 mb-2">6.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/THE DOUBLE CRUNCH KING.png" alt="THE DOUBLE CRUNCH KING" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="THE DOUBLE CRUNCH KING"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">THE DOUBLE CRUNCH KING</h3>
+            <p class="text-sm text-gray-700 mb-2">Two layers of golden-fried chicken perfection, stacked with crisp lettuce, tangy pickles, and a generous cascade of signature sauce, all encased in a toasted sesame seed crown.</p>
+            <p class="text-lg text-gray-700 mb-2">6.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/THE ZESTY PICKLEBACK CHICKEN.png" alt="THE ZESTY PICKLEBACK CHICKEN" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="THE ZESTY PICKLEBACK CHICKEN"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">THE ZESTY PICKLEBACK CHICKEN</h3>
+            <p class="text-sm text-gray-700 mb-2">A succulent, crispy fried chicken fillet tossed in a vibrant spicy sauce, generously topped with tangy coleslaw and a pile of crisp dill pickle slices, all nestled in a soft, toasted brioche bun.</p>
+            <p class="text-lg text-gray-700 mb-2">4.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/DOUBLE DELUXE CRISPY STACK.png" alt="DOUBLE DELUXE CRISPY STACK" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-buregr" data-burger=""="DOUBLE DELUXE CRISPY STACK"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">DOUBLE DELUXE CRISPY STACK</h3>
+            <p class="text-sm text-gray-700 mb-2">Experience the satisfying crunch of two perfectly fried chicken fillets, embraced by cool, creamy mayonnaise and fresh, crisp lettuce, all nestled within a soft, golden-dusted brioche.</p>
+            <p class="text-lg text-gray-700 mb-2">8.99$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="fish-burger-section" class="w-full bg-white py-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-5xl font-bold mb-8 flex items-center gap-4">
+          <span style="font-family: 'Anta', sans-serif;">FISH BURGER</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div class="flex flex-col items-center">
+            <img src="image/burger/THE GOLDEN CATCH BURGER.png" alt="THE GOLDEN CATCH BURGER" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="THE GOLDEN CATCH BURGER"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">THE GOLDEN CATCH BURGER</h3>
+            <p class="text-sm text-gray-700 mb-2">A perfectly crispy fish fillet, topped with a slice of melted cheese, crisp green lettuce, juicy red tomato, and a dollop of creamy tartar sauce, all held within a soft, toasted sesame seed roll.</p>
+            <p class="text-lg text-gray-700 mb-2">4.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/THE OCEANIC CRISP.png" alt="THE OCEANIC CRISP" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="THE OCEANIC CRISP"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">THE OCEANIC CRISP</h3>
+            <p class="text-sm text-gray-700 mb-2">A golden-fried fish patty, generously topped with fresh, shredded lettuce, ripe tomato slices, and a creamy, tangy sauce, all encased in a soft, sesame-dusted round.</p>
+            <p class="text-lg text-gray-700 mb-2">4.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/OCEAN CRUNCH FILLET.png" alt="OCEAN CRUNCH FILLET" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="OCEAN CRUNCH FILLET"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">OCEAN CRUNCH FILLET</h3>
+            <p class="text-sm text-gray-700 mb-2">A perfectly crispy, golden-fried fish fillet, piled high with fresh, vibrant lettuce and a generous spread of creamy tartar sauce, all served on a perfectly toasted, sesame-seeded bread.</p>
+            <p class="text-lg text-gray-700 mb-2">4.99$</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <img src="image/burger/TWIN FISH & BACON DELUXE.png" alt="TWIN FISH & BACON DELUXE" class="w-48 h-48 object-contain mb-4 hover:scale-105 transition-transform cursor-pointer select-burger" data-burger="TWIN FISH & BACON DELUXE"/>
+            <h3 class="text-xl font-bold mb-2 tracking-wide">TWIN FISH & BACON DELUXE</h3>
+            <p class="text-sm text-gray-700 mb-2">Two golden-fried fish fillets, layered with melted cheese, crispy bacon, fresh lettuce, and ripe tomato slices, all resting on a perfectly toasted, golden-brown bun.</p>
+            <p class="text-lg text-gray-700 mb-2">6.99$</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-black text-white mt-10">
+    <div class="max-w-screen-xl mx-auto px-4 py-16 flex flex-col md:flex-row md:justify-between md:items-start gap-16">
+      <div class="flex items-center gap-3 md:flex-col md:items-start">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+        <h3 class="text-2xl italic font-normal mt-2" style="font-family: 'Kaushan Script';">
+          Little Chicken
+        </h3>
+      </div>
+      <div class="flex flex-col gap-10 md:flex-row md:gap-28 w-full md:w-auto">
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Menu</h4>
+          <ul class="text-sm space-y-2">
+            <li>Chicken Fried</li>
+            <li>Burger</li>
+            <li>French Fried</li>
+            <li>burger</li>
+            <li>Drink</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Promotion</h4>
+          <ul class="text-sm space-y-2">
+            <li>Tuesday event</li>
+            <li>Week-end day</li>
+            <li>Anniversary</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Contact Us</h4>
+          <address class="not-italic text-sm space-y-2">
+            <p>No. 246, 5th Floor, Royal Group Building, Preah Monivong Blvd, Phnom Penh, Cambodia</p>
+            <p>Office: 012 343 543</p>
+            <p>Delivery: 015 356 782</p>
+            <p>096 777 8888</p>
+            <p>097 777 8888</p>
+            <p>
+              Our Email:
+              <a class="underline" href="mailto:info@littlechicken.com.kh">
+                info@littlechicken.com.kh
+              </a>
+            </p>
+          </address>
+        </div>
+      </div>
+    </div>
+    <hr class="border-gray-700"/>
+  </footer>
+  <div id="burger-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-lg p-8 w-full max-w-md flex flex-col gap-6 relative">
+    <button id="close-burger-modal" class="absolute top-2 right-2 text-gray-500 hover:text-orange-500 text-2xl">&times;</button>
+    <h3 class="text-2xl font-bold mb-2" id="modal-burger-title">Add Burger to Cart</h3>
+    <form id="burger-order-form" class="flex flex-col gap-4">
+      <!-- No crust/size fields for burgers -->
+      <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded font-semibold">Add to Cart</button>
+    </form>
+    <div id="burger-modal-msg" class="text-green-600 text-center font-semibold hidden">Added to cart!</div>
+  </div>
+</div>
+  <script src="style.js"></script>
+  <script>
+    // Burger modal logic (no crust/size)
+    if (document.getElementById('burger-modal')) {
+      document.querySelectorAll('.select-burger, .select-buregr').forEach(function(img) {
+        img.addEventListener('click', function() {
+          document.getElementById('burger-modal').classList.remove('hidden');
+          document.getElementById('modal-burger-title').textContent = "Add to Cart: " + (img.getAttribute('data-burger') || img.alt);
+          document.getElementById('burger-modal-msg').classList.add('hidden');
+          document.getElementById('burger-order-form').reset();
+          document.getElementById('burger-order-form').setAttribute('data-burger-name', img.getAttribute('data-burger') || img.alt);
+          document.getElementById('burger-order-form').setAttribute('data-burger-img-id', img.getAttribute('src'));
+        });
+      });
+      document.getElementById('close-burger-modal').onclick = function() {
+        document.getElementById('burger-modal').classList.add('hidden');
+      };
+
+      document.getElementById('burger-order-form').onsubmit = function(e) {
+        e.preventDefault();
+        const burgerName = this.getAttribute('data-burger-name');
+        if (!burgerName) return;
+
+        // Find the image element for animation
+        let imgSrc = "";
+        let imgElem = null;
+        document.querySelectorAll('.select-burger, .select-buregr').forEach(function(img) {
+          if ((img.getAttribute('data-burger') || img.alt) === burgerName) {
+            imgSrc = img.getAttribute('src');
+            imgElem = img;
+          }
+        });
+
+        // Fallback for image source if not found
+        if (!imgSrc) {
+          imgSrc = "image/burger/" + burgerName.replace(/ /g, "_").replace(/&/g, "and").toLowerCase() + ".png";
+        }
+
+        // Get price from visible price text (fallback to 0)
+        let price = 0;
+        if (imgElem) {
+          const priceElem = imgElem.parentElement.querySelector('p.text-lg');
+          if (priceElem) {
+            price = parseFloat(priceElem.textContent.replace('$', '')) || 0;
+          }
+        }
+
+        const item = {
+          img: imgSrc,
+          name: burgerName,
+          desc: "",
+          qty: 1,
+          price: price
+        };
+
+        window.addToCart(item, imgElem);
+
+        document.getElementById('burger-modal-msg').classList.remove('hidden');
+        setTimeout(function() {
+          document.getElementById('burger-modal').classList.add('hidden');
+          document.getElementById('burger-modal-msg').classList.add('hidden');
+        }, 1200);
+      };
+    }
+  </script>
+</body>
+</html>

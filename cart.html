@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Cart | Little Chicken</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="image/logo1.png"/>
+</head>
+<body>
+  <header class="bg-black w-full fixed top-0 left-0 z-50">
+    <div class="max-w-full mx-auto flex items-center justify-between px-4 py-2">
+      <div class="flex items-center space-x-4">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+      </div>
+      <!-- Hamburger and search icon for mobile -->
+      <div class="flex md:hidden items-center space-x-4">
+        <button aria-label="Search" class="text-white text-2xl hover:text-orange-500" id="search-btn-mobile">
+          <i class="fas fa-search"></i>
+        </button>
+        <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-white text-base">
+        <a class="hover:text-orange-500" href="index.html">Home</a>
+        <a class="hover:text-orange-500" href="about.html">About us</a>
+        <a class="hover:text-orange-500" href="index.html#menu-category">Menu</a>
+      </nav>
+      <div class="hidden md:flex space-x-6 text-white text-xl relative" id="header-search-container">
+        <div id="header-search-bar"
+             class="absolute top-0 h-full flex items-center z-50 w-0 overflow-hidden bg-black rounded transition-all duration-300"
+             style="box-shadow: 0 2px 8px rgba(0,0,0,0.15); right: 8rem;">
+          <input id="header-search-input" type="text" placeholder="Search menu items..." class="opacity-0 w-0 border-none px-0 py-2 text-white bg-black focus:outline-none placeholder-gray-400 transition-all duration-300" />
+        </div>
+        <button aria-label="Search" class="hover:text-orange-500" id="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+        <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </div>
+    <nav id="mobile-menu" class="md:hidden hidden bg-black text-white px-4 py-4 space-y-4">
+      <a class="block hover:text-orange-500" href="index.html">Home</a>
+      <a class="block hover:text-orange-500" href="about.html">About us</a>
+      <a class="block hover:text-orange-500" href="index.html#menu-category">Menu</a>
+      <div class="flex space-x-6 text-xl mt-2">
+        <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </nav>
+    <!-- Mobile search dropdown (hidden by default) -->
+    <div id="mobile-search-dropdown" class="md:hidden fixed left-0 right-0 top-[64px] z-40 bg-black px-4 py-3 hidden">
+      <input id="mobile-search-input" type="text" placeholder="Search menu items..." class="w-full rounded px-3 py-2 bg-gray-900 text-white placeholder-gray-400 focus:outline-none text-base" />
+      <ul id="mobile-search-results" class="mt-2 bg-black rounded shadow-lg border border-gray-700 max-h-64 overflow-y-auto divide-y divide-gray-800 text-white hidden"></ul>
+    </div>
+  </header>
+  <main class="mt-24 max-w-6xl mx-auto px-4 pb-16">
+    <h2 class="text-2xl font-bold text-center mt-8 mb-6" style="font-family: 'Anta', sans-serif;">Your Location</h2>
+    <hr>
+    <div class="flex flex-col items-center gap-1 mt-6 mb-2">
+      <div class="flex items-center gap-3">
+        <i class="fas fa-map-marker-alt text-2xl text-black"></i>
+        <span id="cart-location" class="text-base md:text-lg text-black text-center"></span>
+      </div>
+      <div class="text-gray-700 text-base text-center" id="cart-phone"></div>
+    </div>
+    <hr>
+    <h2 class="text-2xl font-bold text-center mt-8 mb-6" style="font-family: 'Anta', sans-serif;">Payment Method</h2>
+    <hr>
+    <!-- Payment Method -->
+    <div class="flex flex-col items-center mb-8">
+      <select id="payment-method" class="w-64 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500 text-lg">
+        <option value="cash">Cash on Delivery</option>
+        <option value="card">Pay by Card</option>
+      </select>
+      <div id="card-fields" class="w-full max-w-md mt-6 hidden">
+        <div class="mb-4">
+          <label class="block font-semibold mb-1" for="card-name">Name on Card</label>
+          <input id="card-name" type="text" placeholder="Cardholder Name" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" autocomplete="cc-name"/>
+        </div>
+        <div class="mb-4">
+          <label class="block font-semibold mb-1" for="card-number">Card Number</label>
+          <input id="card-number" type="text" maxlength="19" placeholder="1234 5678 9012 3456" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" autocomplete="cc-number"/>
+        </div>
+        <div class="flex gap-4 mb-4">
+          <div class="flex-1">
+            <label class="block font-semibold mb-1" for="card-exp">Expiry (MM/YY)</label>
+            <input id="card-exp" type="text" maxlength="5" placeholder="MM/YY" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" autocomplete="cc-exp"/>
+          </div>
+          <div class="flex-1">
+            <label class="block font-semibold mb-1" for="card-cvc">CVC</label>
+            <input id="card-cvc" type="text" maxlength="4" placeholder="CVC" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" autocomplete="cc-csc"/>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block font-semibold mb-1" for="card-year">Year (YYYY)</label>
+          <input id="card-year" type="text" maxlength="4" placeholder="YYYY" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"/>
+        </div>
+      </div>
+    </div>
+    <h2 class="text-2xl font-bold text-center mt-8 mb-6" style="font-family: 'Anta', sans-serif;">Your Order</h2>
+    <hr>
+    <div id="cart-items" class="w-full mt-4">
+      <!-- Cart items will be rendered here -->
+    </div>
+    <hr class="my-6">
+    <div class="flex justify-between items-center text-2xl font-bold mb-8" style="font-family: 'Anta', sans-serif;">
+      <span>Total</span>
+      <span id="cart-total" class="text-orange-400">0.00$</span>
+    </div>
+    <div class="flex justify-center">
+      <button id="order-now-btn" class="bg-orange-400 hover:bg-orange-500 text-white text-2xl font-semibold rounded-xl px-16 py-4 transition-colors duration-200" style="font-family: 'Anta', sans-serif;">
+        Order Now
+      </button>
+    </div>
+  </main>
+  <footer class="bg-black text-white mt-10">
+    <div class="max-w-screen-xl mx-auto px-4 py-16 flex flex-col md:flex-row md:justify-between md:items-start gap-16">
+      <div class="flex items-center gap-3 md:flex-col md:items-start">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+        <h3 class="text-2xl italic font-normal mt-2" style="font-family: 'Kaushan Script';">
+          Little Chicken
+        </h3>
+      </div>
+      <div class="flex flex-col gap-10 md:flex-row md:gap-28 w-full md:w-auto">
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Menu</h4>
+          <ul class="text-sm space-y-2">
+            <li>Chicken Fried</li>
+            <li>Burger</li>
+            <li>French Fried</li>
+            <li>Pizza</li>
+            <li>Drink</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Promotion</h4>
+          <ul class="text-sm space-y-2">
+            <li>Tuesday event</li>
+            <li>Week-end day</li>
+            <li>Anniversary</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Contact Us</h4>
+          <address class="not-italic text-xs space-y-2">
+            <p>No. 246, 5th Floor, Royal Group Building, Preah Monivong Blvd, Phnom Penh, Cambodia</p>
+            <p>Office: 012 343 543</p>
+            <p>Delivery: 015 356 782</p>
+            <p>096 777 8888</p>
+            <p>097 777 8888</p>
+            <p>
+              Our Email:
+              <a class="underline" href="mailto:info@littlechicken.com.kh">
+                info@littlechicken.com.kh
+              </a>
+            </p>
+          </address>
+        </div>
+      </div>
+    </div>
+    <hr class="border-gray-700"/>
+  </footer>
+  <script src="style.js"></script>
+  <script>
+    // Use localStorage for cart persistence
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem('lcCart')) || [];
+      } catch {
+        return [];
+      }
+    }
+    function setCart(cart) {
+      localStorage.setItem('lcCart', JSON.stringify(cart));
+    }
+
+    // Render cart items from localStorage
+    function renderCart() {
+      const cart = getCart();
+      const cartItemsDiv = document.getElementById('cart-items');
+      let total = 0;
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = '<div class="text-center text-gray-400 py-8">Your cart is empty.</div>';
+      } else {
+        cartItemsDiv.innerHTML = cart.map((item, idx) => {
+          total += item.price * item.qty;
+          return `
+          <div class="flex flex-wrap md:flex-nowrap items-center justify-between py-10 border-b border-gray-200 mb-10 bg-white rounded-xl shadow-lg gap-8">
+            <img src="${item.img}" alt="${item.name}" class="w-40 h-32 object-cover rounded-lg mr-10"/>
+            <div class="flex-1 flex flex-col items-start ml-8 mb-4 md:mb-0">
+              <span class="font-semibold text-lg md:text-xl mb-3">Name</span>
+              <span class="text-black text-lg font-semibold mb-2">${item.name}</span>
+              <span class="text-gray-400 text-base">${item.desc}</span>
+            </div>
+            <div class="flex flex-col items-center mx-10">
+              <span class="font-semibold text-lg md:text-xl mb-3">Quantity</span>
+              <div class="flex items-center gap-4">
+                <button class="decrease-qty px-4 py-2 bg-gray-200 rounded-lg text-lg" data-idx="${idx}">-</button>
+                <span class="text-orange-400 text-2xl font-bold">${item.qty}</span>
+                <button class="increase-qty px-4 py-2 bg-gray-200 rounded-lg text-lg" data-idx="${idx}">+</button>
+              </div>
+            </div>
+            <div class="flex flex-col items-end ml-8">
+              <span class="font-semibold text-lg md:text-xl mb-3">Price</span>
+              <span class="text-orange-400 text-2xl font-bold mb-3">${(item.price * item.qty).toFixed(2)}$</span>
+              <button class="remove-item text-sm text-red-500 mt-2 underline" data-idx="${idx}">Remove</button>
+            </div>
+          </div>
+          `;
+        }).join('');
+      }
+      document.getElementById('cart-total').textContent = total.toFixed(2) + '$';
+
+      // Add event listeners for quantity and remove
+      document.querySelectorAll('.increase-qty').forEach(btn => {
+        btn.onclick = function() {
+          const idx = parseInt(this.getAttribute('data-idx'));
+          const cart = getCart();
+          cart[idx].qty += 1;
+          setCart(cart);
+          renderCart();
+        };
+      });
+      document.querySelectorAll('.decrease-qty').forEach(btn => {
+        btn.onclick = function() {
+          const idx = parseInt(this.getAttribute('data-idx'));
+          const cart = getCart();
+          if (cart[idx].qty > 1) {
+            cart[idx].qty -= 1;
+          } else {
+            cart.splice(idx, 1);
+          }
+          setCart(cart);
+          renderCart();
+        };
+      });
+      document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.onclick = function() {
+          const idx = parseInt(this.getAttribute('data-idx'));
+          const cart = getCart();
+          cart.splice(idx, 1);
+          setCart(cart);
+          renderCart();
+        };
+      });
+    }
+
+    // Get location and phone from localStorage (from account)
+    function renderLocationAndPhone() {
+      const location = localStorage.getItem('lc_profile_location') || "No location set";
+      const city = localStorage.getItem('lc_profile_city') || "";
+      const street = localStorage.getItem('lc_profile_street') || "";
+      const phone = localStorage.getItem('lc_profile_phone') || "No phone set";
+      let locationText = "";
+      if (street && city) {
+        locationText = street + ", " + city;
+      } else if (city) {
+        locationText = city;
+      } else if (street) {
+        locationText = street;
+      } else {
+        locationText = location;
+      }
+      document.getElementById('cart-location').textContent = locationText;
+      document.getElementById('cart-phone').textContent = phone;
+    }
+
+    renderCart();
+    renderLocationAndPhone();
+
+    // Order Now button (demo)
+    document.getElementById('order-now-btn').onclick = function() {
+      alert('Order placed! (Demo)');
+    };
+
+    // Show/hide card fields based on payment method
+    document.getElementById('payment-method').addEventListener('change', function() {
+      var cardFields = document.getElementById('card-fields');
+      if (this.value === 'card') {
+        cardFields.classList.remove('hidden');
+      } else {
+        cardFields.classList.add('hidden');
+      }
+    });
+
+    // Card number: auto-insert space every 4 digits, only allow numbers and spaces
+    document.getElementById('card-number').addEventListener('input', function(e) {
+      let value = this.value.replace(/\D/g, '').substring(0,16); // Only digits, max 16
+      let formatted = value.replace(/(.{4})/g, '$1 ').trim();
+      this.value = formatted;
+    });
+
+    // Expiry MM/YY: only allow 2 digits, then auto-insert "/", then 2 digits
+    document.getElementById('card-exp').addEventListener('input', function(e) {
+      let value = this.value.replace(/\D/g, '').substring(0,4); // Only digits, max 4
+      if (value.length > 2) {
+        value = value.substring(0,2) + '/' + value.substring(2,4);
+      }
+      this.value = value;
+    });
+
+    // Year YYYY: only allow 4 digits
+    document.getElementById('card-year').addEventListener('input', function(e) {
+      this.value = this.value.replace(/\D/g, '').substring(0,4);
+    });
+
+    // On page load, render cart from localStorage
+    renderCart();
+  </script>
+</body>
+</html>

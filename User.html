@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>User | Little Chicken</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="style.js"></script>
+  <link rel="icon" type="image/png" href="image/logo1.png"/>
+</head>
+<body>
+  <header class="bg-black w-full fixed top-0 left-0 z-50">
+    <div class="max-w-full mx-auto flex items-center justify-between px-4 py-2">
+      <div class="flex items-center space-x-4">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+      </div>
+      <!-- Hamburger and search icon for mobile -->
+      <div class="flex md:hidden items-center space-x-4">
+        <button aria-label="Search" class="text-white text-2xl hover:text-orange-500" id="search-btn-mobile">
+          <i class="fas fa-search"></i>
+        </button>
+        <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex space-x-6 text-white text-base">
+        <a class="hover:text-orange-500" href="index.html">Home</a>
+        <a class="hover:text-orange-500" href="about.html">About us</a>
+        <a class="hover:text-orange-500" href="index.html#menu-category">Menu</a>
+      </nav>
+      <div class="hidden md:flex space-x-6 text-white text-xl relative" id="header-search-container">
+        <div id="header-search-bar"
+             class="absolute top-0 h-full flex items-center z-50 w-0 overflow-hidden bg-black rounded transition-all duration-300"
+             style="box-shadow: 0 2px 8px rgba(0,0,0,0.15); right: 8rem;">
+          <input id="header-search-input" type="text" placeholder="Search menu items..." class="opacity-0 w-0 border-none px-0 py-2 text-white bg-black focus:outline-none placeholder-gray-400 transition-all duration-300" />
+        </div>
+        <button aria-label="Search" class="hover:text-orange-500" id="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+        <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </div>
+    <!-- Mobile menu (hidden by default) -->
+    <nav id="mobile-menu" class="md:hidden hidden bg-black text-white px-4 py-4 space-y-4">
+      <a class="block hover:text-orange-500" href="index.html">Home</a>
+      <a class="block hover:text-orange-500" href="about.html">About us</a>
+      <a class="block hover:text-orange-500" href="index.html#menu-category">Menu</a>
+      <div class="flex space-x-6 text-xl mt-2">
+        <a aria-label="User account" class="hover:text-orange-500" href="User.html">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <a aria-label="Shopping cart" class="hover:text-orange-500" href="cart.html">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </nav>
+    <!-- Mobile search dropdown (hidden by default) -->
+    <div id="mobile-search-dropdown" class="md:hidden fixed left-0 right-0 top-[64px] z-40 bg-black px-4 py-3 hidden">
+      <input id="mobile-search-input" type="text" placeholder="Search menu items..." class="w-full rounded px-3 py-2 bg-gray-900 text-white placeholder-gray-400 focus:outline-none text-base" />
+      <ul id="mobile-search-results" class="mt-2 bg-black rounded shadow-lg border border-gray-700 max-h-64 overflow-y-auto divide-y divide-gray-800 text-white hidden"></ul>
+    </div>
+  </header>
+  <main class="mt-20 max-w-3xl mx-auto px-4 py-10 relative">
+    <a id="back-arrow" aria-label="Back" class="absolute top-8 left-8 text-black hover:text-orange-500 text-2xl z-20 cursor-pointer">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <!-- Login/Sign Up forms (visible by default) -->
+    <div id="auth-section">
+      <h1 class="text-3xl font-bold text-center mb-8" id="main-title">Login</h1>
+      <form id="login-form" class="bg-white rounded shadow p-6 flex flex-col items-center gap-4 max-w-md mx-auto">
+        <input
+          type="text"
+          placeholder="Email or phone number"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        />
+        <div class="w-full flex justify-end">
+          <button type="button" class="text-sm text-orange-500 hover:underline focus:outline-none">
+            Forgot password?
+          </button>
+        </div>
+        <button
+          type="submit"
+          class="w-full mt-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded font-semibold"
+        >
+          Login
+        </button>
+        <p class="text-sm text-gray-600 mt-2 text-center">
+          If you don't have account please
+          <a href="#" id="show-signup" class="text-orange-500 hover:underline">sign up</a>
+        </p>
+      </form>
+      <!-- Sign up form, hidden by default -->
+      <form id="signup-form" class="bg-white rounded shadow p-6 flex flex-col items-center gap-4 max-w-md mx-auto hidden">
+        <input
+          type="text"
+          placeholder="First name"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Last name"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        />
+        <input
+          type="tel"
+          placeholder="Phone number"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        />
+        <!-- Select City -->
+        <select
+          id="city-select"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        >
+          <option value="">Select City</option>
+          <option>Phnom Penh</option>
+          <option>Banteay Meanchey</option>
+          <option>Battambang</option>
+          <option>Kampong Cham</option>
+          <option>Kampong Chhnang</option>
+          <option>Kampong Speu</option>
+          <option>Kampong Thom</option>
+          <option>Kampot</option>
+          <option>Kandal</option>
+          <option>Kep</option>
+          <option>Koh Kong</option>
+          <option>Kratie</option>
+          <option>Mondulkiri</option>
+          <option>Oddar Meanchey</option>
+          <option>Pailin</option>
+          <option>Preah Vihear</option>
+          <option>Prey Veng</option>
+          <option>Pursat</option>
+          <option>Ratanakiri</option>
+          <option>Siem Reap</option>
+          <option>Preah Sihanouk</option>
+          <option>Stung Treng</option>
+          <option>Svay Rieng</option>
+          <option>Takeo</option>
+          <option>Tboung Khmum</option>
+        </select>
+        <!-- Street input -->
+        <input
+          type="text"
+          placeholder="Street"
+          id="street-input"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        />
+        <!-- Location with map selection -->
+        <div class="w-full flex flex-col gap-2">
+          <label class="flex items-center gap-2 font-semibold text-black mb-1">
+            <i class="fas fa-map-marker-alt"></i>
+            Select In Map
+          </label>
+          <input
+            type="text"
+            id="location-input"
+            placeholder="Click on the map to select location"
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+            required
+            readonly
+          />
+          <div id="map-select" class="w-full h-64 border-2 border-blue-400 rounded mt-2"></div>
+        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Confirm password"
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500"
+          required
+        />
+        <button
+          type="submit"
+          class="w-full mt-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded font-semibold"
+        >
+          Sign Up
+        </button>
+        <p class="text-sm text-gray-600 mt-2 text-center">
+          Already have an account?
+          <a href="#" id="show-login" class="text-orange-500 hover:underline">Login</a>
+        </p>
+      </form>
+    </div>
+    <!-- Profile Section (hidden by default, shown after login/sign up) -->
+    <div id="profile-section" class="hidden">
+      <!-- Profile Header Section -->
+      <section class="bg-white rounded-t-lg shadow flex flex-col md:flex-row items-center md:items-start justify-between px-8 py-8 gap-6 border-b border-gray-200">
+        <div class="flex items-center gap-6 w-full md:w-auto">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center w-24 h-24 rounded-full border-2 border-black">
+              <i class="fas fa-user-circle text-7xl text-black"></i>
+            </div>
+          </div>
+          <div>
+            <div id="profile-name" class="text-2xl md:text-3xl font-semibold" style="font-family: 'Anta', sans-serif;"></div>
+            <div class="text-base md:text-lg text-black mt-1" style="font-family: 'Anta', sans-serif;">
+              <span class="block text-sm text-gray-600 font-normal">Diamond Member</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 w-full md:w-auto mt-6 md:mt-0">
+          <i class="fas fa-map-marker-alt text-2xl text-black"></i>
+          <span class="text-base md:text-lg text-black" style="font-family: 'Anta', sans-serif;">
+            <!-- Show city and street from localStorage if available, fallback to default -->
+            <span id="profile-city-street">
+              No address provided
+            </span>
+          </span>
+          <i class="fas fa-chevron-right text-gray-500 cursor-pointer" id="profile-detail-arrow"></i>
+        </div>
+      </section>
+      <!-- Profile Details (hidden by default) -->
+      <section id="profile-details" class="bg-white px-8 py-10 hidden">
+        <h2 class="text-2xl font-bold mb-6" style="font-family: 'Anta', sans-serif;">Profile Details</h2>
+        <div class="space-y-4">
+          <div>
+            <span class="font-semibold">Full Name:</span>
+            <span id="detail-fullname"></span>
+          </div>
+          <div>
+            <span class="font-semibold">Phone Number:</span>
+            <span id="detail-phone"></span>
+          </div>
+          <div>
+            <span class="font-semibold">Email:</span>
+            <span id="detail-email"></span>
+          </div>
+          <div>
+            <span class="font-semibold">City:</span>
+            <span id="detail-city"></span>
+          </div>
+          <div>
+            <span class="font-semibold">Street:</span>
+            <span id="detail-street"></span>
+          </div>
+    
+          <div>
+            <span class="font-semibold">Payment:</span>
+            <span id="detail-payment">Visa **** 1234</span>
+          </div>
+        </div>
+      </section>
+      <!-- Profile Menu Section -->
+      <section class="bg-white px-8 py-10" id="profile-menu-section">
+        <ul class="space-y-8" id="profile-menu-list">
+          <li class="flex items-center justify-between group cursor-pointer">
+            <span class="text-2xl md:text-2xl font-semibold" style="font-family: 'Anta', sans-serif;">Contact Service</span>
+            <i class="fas fa-chevron-right text-2xl text-gray-500 group-hover:text-orange-500"></i>
+          </li>
+          <li class="flex items-center justify-between group cursor-pointer">
+            <span class="text-2xl md:text-2xl font-semibold" style="font-family: 'Anta', sans-serif;">History</span>
+            <i class="fas fa-chevron-right text-2xl text-gray-500 group-hover:text-orange-500"></i>
+          </li>
+          <li class="flex items-center justify-between group cursor-pointer">
+            <span class="text-2xl md:text-2xl font-semibold" style="font-family: 'Anta', sans-serif;">Feedback</span>
+            <i class="fas fa-chevron-right text-2xl text-gray-500 group-hover:text-orange-500"></i>
+          </li>
+          <li class="flex items-center justify-between group cursor-pointer" id="security-menu-item">
+            <span class="text-2xl md:text-2xl font-semibold" style="font-family: 'Anta', sans-serif;">Security</span>
+            <i class="fas fa-chevron-right text-2xl text-gray-500 group-hover:text-orange-500"></i>
+          </li>
+        </ul>
+        <!-- Security Simple Menu (hidden by default) -->
+        <ul id="security-simple-list" class="space-y-8 mt-10 hidden">
+          <li class="flex items-center justify-between group cursor-pointer" id="change-phone-item">
+            <span class="text-2xl md:text-2xl font-semibold" style="font-family: 'Anta', sans-serif;">Change phone number</span>
+            <i class="fas fa-chevron-right text-2xl text-gray-500 group-hover:text-orange-500"></i>
+          </li>
+          <li class="flex items-center justify-between group cursor-pointer" id="change-password-item">
+            <span class="text-2xl md:text-2xl font-semibold" style="font-family: 'Anta', sans-serif;">Change password</span>
+            <i class="fas fa-chevron-right text-2xl text-gray-500 group-hover:text-orange-500"></i>
+          </li>
+          <li class="flex items-center justify-between group cursor-pointer" id="change-email-item">
+            <span class="text-2xl md:text-2xl font-semibold" style="font-family: 'Anta', sans-serif;">Change email</span>
+            <i class="fas fa-chevron-right text-2xl text-gray-500 group-hover:text-orange-500"></i>
+          </li>
+          <li class="flex items-center justify-between group cursor-pointer" id="change-address-item">
+            <span class="text-2xl md:text-2xl font-semibold" style="font-family: 'Anta', sans-serif;">Change address</span>
+            <i class="fas fa-chevron-right text-2xl text-gray-500 group-hover:text-orange-500"></i>
+          </li>
+        </ul>
+        <!-- Change Phone Modal -->
+        <div id="change-phone-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+          <div class="bg-white rounded-lg p-8 w-full max-w-xs flex flex-col gap-4">
+            <h3 class="text-xl font-bold mb-2">Change Phone Number</h3>
+            <input id="new-phone-input" type="tel" placeholder="New phone number" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required>
+            <div id="phone-error" class="text-red-500 text-sm"></div>
+            <div class="flex justify-end gap-2 mt-2">
+              <button id="cancel-phone-btn" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Cancel</button>
+              <button id="save-phone-btn" class="px-4 py-2 rounded bg-orange-500 text-white hover:bg-orange-600">Save</button>
+            </div>
+          </div>
+        </div>
+        <!-- Change Password Modal -->
+        <div id="change-password-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+          <div class="bg-white rounded-lg p-8 w-full max-w-xs flex flex-col gap-4">
+            <h3 class="text-xl font-bold mb-2">Change Password</h3>
+            <input id="old-password-input" type="password" placeholder="Current password" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required>
+            <input id="new-password-input" type="password" placeholder="New password" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required>
+            <input id="confirm-password-input" type="password" placeholder="Confirm new password" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required>
+            <div id="password-error" class="text-red-500 text-sm"></div>
+            <div class="flex justify-end gap-2 mt-2">
+              <button id="cancel-password-btn" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Cancel</button>
+              <button id="save-password-btn" class="px-4 py-2 rounded bg-orange-500 text-white hover:bg-orange-600">Save</button>
+            </div>
+          </div>
+        </div>
+        <!-- Change Email Modal -->
+        <div id="change-email-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+          <div class="bg-white rounded-lg p-8 w-full max-w-xs flex flex-col gap-4">
+            <h3 class="text-xl font-bold mb-2">Change Email</h3>
+            <input id="new-email-input" type="email" placeholder="New email" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required>
+            <div id="email-error" class="text-red-500 text-sm"></div>
+            <div class="flex justify-end gap-2 mt-2">
+              <button id="cancel-email-btn" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Cancel</button>
+              <button id="save-email-btn" class="px-4 py-2 rounded bg-orange-500 text-white hover:bg-orange-600">Save</button>
+            </div>
+          </div>
+        </div>
+        <!-- Change Address Modal -->
+        <div id="change-address-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+          <div class="bg-white rounded-lg p-8 w-full max-w-md flex flex-col gap-4">
+            <h3 class="text-xl font-bold mb-2">Change Address</h3>
+            <select id="modal-city-select" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required>
+              <option value="">Select City</option>
+              <option>Phnom Penh</option>
+              <option>Banteay Meanchey</option>
+              <option>Battambang</option>
+              <option>Kampong Cham</option>
+              <option>Kampong Chhnang</option>
+              <option>Kampong Speu</option>
+              <option>Kampong Thom</option>
+              <option>Kampot</option>
+              <option>Kandal</option>
+              <option>Kep</option>
+              <option>Koh Kong</option>
+              <option>Kratie</option>
+              <option>Mondulkiri</option>
+              <option>Oddar Meanchey</option>
+              <option>Pailin</option>
+              <option>Preah Vihear</option>
+              <option>Prey Veng</option>
+              <option>Pursat</option>
+              <option>Ratanakiri</option>
+              <option>Siem Reap</option>
+              <option>Preah Sihanouk</option>
+              <option>Stung Treng</option>
+              <option>Svay Rieng</option>
+              <option>Takeo</option>
+              <option>Tboung Khmum</option>
+            </select>
+            <input id="modal-street-input" type="text" placeholder="Street" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required>
+            <input id="modal-location-input" type="text" placeholder="Click on the map to select location" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-orange-500" required readonly>
+            <div id="modal-map-select" class="w-full h-48 border-2 border-blue-400 rounded mt-2"></div>
+            <div id="address-error" class="text-red-500 text-sm"></div>
+            <div class="flex justify-end gap-2 mt-2">
+              <button id="cancel-address-btn" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Cancel</button>
+              <button id="save-address-btn" class="px-4 py-2 rounded bg-orange-500 text-white hover:bg-orange-600">Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end mt-16">
+          <button id="signout-btn" class="bg-orange-400 hover:bg-orange-500 text-white text-2xl font-semibold rounded-xl px-16 py-4 transition-colors duration-200" style="font-family: 'Anta', sans-serif;">
+            Sign Out
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="bg-black text-white mt-10">
+    <div class="max-w-screen-xl mx-auto px-4 py-16 flex flex-col md:flex-row md:justify-between md:items-start gap-16">
+      <div class="flex items-center gap-3 md:flex-col md:items-start">
+        <img alt="Little Chicken logo" class="w-16 h-16 object-contain" src="image/logo1.png"/>
+        <h3 class="text-2xl italic font-normal mt-2" style="font-family: 'Kaushan Script';">
+          Little Chicken
+        </h3>
+      </div>
+      <div class="flex flex-col gap-10 md:flex-row md:gap-28 w-full md:w-auto">
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Menu</h4>
+          <ul class="text-sm space-y-2">
+            <li>Chicken Fried</li>
+            <li>Burger</li>
+            <li>French Fried</li>
+            <li>Pizza</li>
+            <li>Drink</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Our Promotion</h4>
+          <ul class="text-sm space-y-2">
+            <li>Tuesday event</li>
+            <li>Week-end day</li>
+            <li>Anniversary</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-lg">Contact Us</h4>
+          <address class="not-italic text-xs space-y-2">
+            <p>No. 246, 5th Floor, Royal Group Building, Preah Monivong Blvd, Phnom Penh, Cambodia</p>
+            <p>Office: 012 343 543</p>
+            <p>Delivery: 015 356 782</p>
+            <p>096 777 8888</p>
+            <p>097 777 8888</p>
+            <p>
+              Our Email:
+              <a class="underline" href="mailto:info@littlechicken.com.kh">
+                info@littlechicken.com.kh
+              </a>
+            </p>
+          </address>
+        </div>
+      </div>
+    </div>
+    <hr class="border-gray-700"/>
+  </footer>
+</body>
+</html>
